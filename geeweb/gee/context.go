@@ -14,6 +14,7 @@ type Context struct {
 	Request    *http.Request
 	Path       string
 	Method     string
+	Params     map[string]string
 	StatusCode int
 }
 
@@ -76,4 +77,8 @@ func (c *Context) HTML(code int, html string) {
 	if err != nil {
 		log.Fatal("html write:", err)
 	}
+}
+
+func (c *Context) Param(key string) string {
+	return c.Params[key]
 }
